@@ -1,0 +1,21 @@
+<!-- VARIASI 1: URL spesifik -->
+<!-- Servlet hanya dipanggil saat alamat = /MenghitungNilai -->
+<servlet-mapping>
+    <servlet-name>MenghitungNilai</servlet-name>
+    <url-pattern>/MenghitungNilai</url-pattern>
+</servlet-mapping>
+
+<!-- VARIASI 2: Wildcard /* -->
+<!-- Apapun yang diketik di address bar akan memanggil servlet ini -->
+<servlet-mapping>
+    <servlet-name>MenghitungNilai</servlet-name>
+    <url-pattern>/*</url-pattern>
+</servlet-mapping>
+
+<!-- VARIASI 3: Default / -->
+<!-- File yang ada di project tetap terbuka,
+     tapi jika file tidak ditemukan → buka servlet ini -->
+<servlet-mapping>
+    <servlet-name>MenghitungNilai</servlet-name>
+    <url-pattern>/</url-parameter>
+</servlet-mapping>
