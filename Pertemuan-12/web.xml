@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!-- =============================================
+         CARA 1: Welcome Files
+         File yang dibuka pertama kali saat aplikasi dijalankan.
+         Bisa lebih dari satu, dipisah koma di NetBeans
+         (di XML ditulis sebagai elemen terpisah)
+         ============================================= -->
+    <welcome-file-list>
+        <welcome-file>HitungNilai</welcome-file>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- =============================================
+         CARA 2: Servlet Mapping (via tab Servlets di NetBeans)
+         Mendaftarkan servlet dengan nama & class, lalu
+         memetakan ke URL pattern tertentu
+         ============================================= -->
+
+    <!-- Daftarkan servlet -->
+    <servlet>
+        <servlet-name>MenghitungNilai</servlet-name>
+        <servlet-class>HitungNilai</servlet-class>
+    </servlet>
+
+    <!-- Mapping 1: 
