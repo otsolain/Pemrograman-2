@@ -1,0 +1,163 @@
+/* ========================
+   LAYOUT DASAR
+   ======================== */
+body {
+    font-family: Tahoma, Geneva, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+#header {
+    background-color: #577927;
+    color: white;
+    padding: 10px 20px;
+}
+
+#konten {
+    padding: 20px;
+    min-height: 400px;
+    background: white;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+#footer {
+    background-color: #577927;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-size: 80%;
+}
+
+/* ========================
+   MENU HORIZONTAL (#menu)
+   ======================== */
+#menu {
+    background: #efefef;
+    background: linear-gradient(left, #efefef 0%, #bbbbbb 100%);
+    background: -moz-linear-gradient(left, #efefef 0%, #bbbbbb 100%);
+    background: -webkit-linear-gradient(left, #efefef 0%, #bbbbbb 100%);
+    box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.15);
+    padding: 0 20px;
+    border-radius: 10px;
+    list-style: none;
+    position: relative;
+    display: inline-table;
+}
+
+#menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+#menu li {
+    width: 60px;
+    border-bottom: 1px solid #969BA5;
+    margin: 0;
+    padding: 0;
+    font-size: 80%;
+    vertical-align: bottom;
+}
+
+#menu a:link, #menu a:visited {
+    display: block;
+    padding: 5px 5px 0.5px 0em;
+    border-left: 6px solid #577927;
+    border-right: 6px solid #577927;
+    background-color: #c4c0f1;
+    color: #965180;
+    text-decoration: none;
+}
+
+#menu a:hover {
+    background-color: #697269;
+    color: #FFFFFF;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+/* ========================
+   NAVBAR DROPDOWN (nav)
+   ======================== */
+nav ul ul {
+    display: none;
+}
+
+nav ul li:hover > ul {
+    display: block;
+}
+
+nav ul {
+    background: #efefef;
+    background: linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+    background: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+    background: -webkit-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+    box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.15);
+    padding: 0 20px;
+    border-radius: 10px;
+    list-style: none;
+    position: relative;
+    display: inline-table;
+}
+
+nav ul:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li:hover {
+    background: #4b545f;
+    background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
+    background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+    background: -webkit-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+}
+
+nav ul li:hover a {
+    color: #fff;
+}
+
+nav ul li a {
+    display: block;
+    padding: 5px 10px;
+    color: #757575;
+    text-decoration: none;
+}
+
+/* Sub-menu (dropdown) */
+nav ul ul {
+    background: #5f6975;
+    border-radius: 0px;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+}
+
+nav ul ul li {
+    float: none;
+    border-top: 1px solid #6b727c;
+    border-bottom: 1px solid #575f6a;
+    position: relative;
+}
+
+nav ul ul li a {
+    padding: 5px 20px;
+    color: #fff;
+}
+
+nav ul ul li a:hover {
+    background: #4b545f;
+}
+
+/* Sub-sub-menu (dropdown level 3) */
+nav ul ul ul {
+    position: absolute;
+    left: 100%;
+    top: 0;
+}
