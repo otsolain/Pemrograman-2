@@ -29,4 +29,10 @@
         <servlet-class>HitungNilai</servlet-class>
     </servlet>
 
-    <!-- Mapping 1: 
+    <!-- Mapping 1: URL spesifik /MenghitungNilai -->
+    <servlet-mapping>
+        <servlet-name>MenghitungNilai</servlet-name>
+        <url-pattern>/MenghitungNilai</url-pattern>
+    </servlet-mapping>
+
+</web-app>
