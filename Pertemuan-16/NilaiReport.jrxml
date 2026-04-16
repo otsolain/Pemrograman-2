@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+              http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="NilaiReport"
+              pageWidth="842" pageHeight="595"
+              orientation="Landscape"
+              columnWidth="782" leftMargin="30" rightMargin="30"
+              topMargin="20" bottomMargin="20">
+
+    <!-- Parameter laporan -->
+    <parameter name="REPORT_TITLE" class="java.lang.String"/>
+
+    <!-- Query data nilai -->
+    <queryString>
+        <![CDATA[
+            SELECT n.nim, m.nama, mk.nama_mk,
+                   n.nilai_tugas, n.nilai_uts, n.nilai_uas,
+                   n.nilai_akhir, n.grade
+            FROM tbnilai n
+            JOIN tbmahasiswa  m  ON n.nim     = m.nim
+            JOIN tbmatakuliah mk ON n.kode_mk = mk.kode_mk
+            ORDER BY n.nim ASC
+        ]]>
+    </queryString>
+
+    <!-- Field mapping dari query -->
+    <field name="nim"          class="java.lang.String"/>
+    <field name="nama"         class="java.lang.String"/>
+    <field name="nama_mk"      class="java.lang.String"/>
+    <field name="nilai_tugas"  class="java.lang.Double"/>
+    <field name="nilai_uts"    class="java.lang.Double"/>
+    <field name="nilai_uas"    class="java.lang.Double"/>
+    <field name="nilai_akhir"  class="java.lang.Double"/>
+    <field name="grade"        class="java.lang.String"/>
+
+    <!-- Header halaman -->
+    <pageHeader>
+        <band height="60">
+            <staticText>
+                <reportElement x="0" y="0" width="782" height="30"/>
+                <textElement textAlignment="Center">
+                    <font size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[LAPORAN NILAI MAHASISWA]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="30" width="782" height="20"/>
+                <textElement textAlignment="Center">
+                    <font size="10"/>
+                </textElement>
+                <text><![CDATA[UNIVERSITAS PAMULANG]]></text>
+            </staticText>
+        </band>
+    </pageHeader>
+
+    <!-- Header kolom tabel -->
+    <columnHeader>
+        <band height="25">
+            <staticText>
+                <reportElement x="0"   y="0" width="80"  height="25" backcolor="#AAAAFF" mode="Opaque"/>
+                <textElement textAlignment="Center"><font isBold="true"/></textElement>
+                <text><![CDATA[NIM]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="80"  y="0" width="140" height="25" backcolor="#AAAAFF" mode="Opaque"/>
+                <textElement textAlignment="Center"><font isBold="true"/></textElement>
+                <text><![CDATA[Nama]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="220" y="0" width="150" height="25" backcolor="#AAAAFF" mode="Opaque"/>
+                <textElement textAlignment="Center"><font isBold="true"/></textElement>
+                <text><![CDATA[Mata Kuliah]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="370" y="0" width="80"  height="25" backcolor="#AAAAFF" mode="Opaque"/>
+                <textElement textAlignment="Center"><font isBold="true"/></textElement>
+                <text><![CDATA[Tugas]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="450" y="0" width="80"  height="25" backcolor="#AAAAFF" mode="Opaque"/>
+                <textElement textAlignment="Center"><font isBold="true"/></textElement>
+                <text><![CDATA[UTS]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="530" y="0" width="80"  height="25" backcolor="#AAAAFF" mode="Opaque"/>
+                <textElement textAlignment="Center"><font isBold="true"/></textElement>
+                <text><![CDATA[UAS]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="610" y="0" width="100" height="25" backcolor="#AAAAFF" mode="Opaque"/>
+                <textElement textAlignment="Center"><font isBold="true"/></textElement>
+                <text><![CDATA[Nilai Akhir]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="710" y="0" width="72"  height="25" backcolor="#AAAAFF" mode="Opaque"/>
+                <textElement textAlignment="Center"><font isBold="true"/></textElement>
+                <text><![CDATA[Grade]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <!-- Isi baris data -->
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="0"   y="0" width="80"  height="20"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{nim}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="80"  y="0" width="140" height="20"/>
+                <textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="220" y="0" width="150" height="20"/>
+                <textFieldExpression><![CDATA[$F{nama_mk}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="370" y="0" width="80"  height="20"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{nilai_tugas}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="450" y="0" width="80"  height="20"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{nilai_uts}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="530" y="0" width="80"  height="20"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{nilai_uas}]]></textFieldExpression>
+            </textField>
+            <textField pattern="##0.00">
+                <reportElement x="610" y="0" width="100" height="20"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{nilai_akhir}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="710" y="0" width="72"  height="20"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{grade}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <!-- Footer halaman -->
+    <pageFooter>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="0" width="782" height="20"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Halaman " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+
+</jasperReport>
