@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+
+    <!-- File output .exe yang dihasilkan -->
+    <outfile>dist/PenilaianMhs.exe</outfile>
+
+    <!-- File .jar input dari hasil Clean and Build NetBeans -->
+    <jar>dist/AplikasiAdministrasiNilai.jar</jar>
+
+    <!-- Konfigurasi JRE minimum -->
+    <jre>
+        <minVersion>1.8.0</minVersion>
+    </jre>
+
+    <!-- Splash screen (opsional, hanya file .bmp) -->
+    <splash>
+        <file>src/images/splash.bmp</file>
+        <waitForWindow>true</waitForWindow>
+        <timeout>60</timeout>
+    </splash>
+
+    <!-- Informasi aplikasi -->
+    <versionInfo>
+        <fileVersion>1.0.0.0</fileVersion>
+        <productVersion>1.0.0.0</productVersion>
+        <fileDescription>Aplikasi Administrasi Nilai</fileDescription>
+        <productName>PenilaianMhs</productName>
+        <copyright>2026</copyright>
+    </versionInfo>
+
+</launch4jConfig>
