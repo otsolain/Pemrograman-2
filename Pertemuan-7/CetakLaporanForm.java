@@ -1,81 +1,56 @@
+// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
+import java.awt.Component;
+import java.awt.FlowLayout;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.HashMap;
-import java.util.Map;
-import javax.swing.*;
-import net.sf.jasperreports.engine.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
 
-public class CetakLaporanForm extends javax.swing.JFrame {
+public class CetakLaporanForm extends JFrame {
+   public CetakLaporanForm() {
+      this.setTitle("Cetak Laporan");
+      this.setSize(300, 150);
+      this.setDefaultCloseOperation(3);
+      this.setLocationRelativeTo((Component)null);
+      this.initComponents();
+   }
 
-    public CetakLaporanForm() {
-        setTitle("Cetak Laporan");
-        setSize(300, 150);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        initComponents();
-    }
+   private void initComponents() {
+      JButton var1 = new JButton("Cetak Laporan");
+      var1.addActionListener((var1x) -> this.cetakLaporan());
+      this.setLayout(new FlowLayout());
+      this.add(var1);
+   }
 
-    private void initComponents() {
-        JButton btnCetak = new JButton("Cetak Laporan");
-        btnCetak.addActionListener(e -> cetakLaporan());
+   private void cetakLaporan() {
+      String var1 = "jdbc:sqlserver://localhost:1433;databaseName=datamhs;user=SA;password=Haikal123!;encrypt=true;trustServerCertificate=true";
 
-        setLayout(new java.awt.FlowLayout());
-        add(btnCetak);
-    }
+      try {
+         Connection var2 = DriverManager.getConnection(var1);
+         File var10000 = new File(".");
+         String var3 = var10000.getCanonicalPath() + "/LaporanMahasiswa.jrxml";
+         JasperReport var4 = JasperCompileManager.compileReport(var3);
+         HashMap var5 = new HashMap();
+         var5.put("judul", "Laporan Data Mahasiswa");
+         JasperPrint var6 = JasperFillManager.fillReport(var4, var5, var2);
+         JasperViewer.viewReport(var6, false);
+      } catch (Exception var7) {
+         JOptionPane.showMessageDialog(this, "Gagal cetak laporan: " + var7.getMessage(), "Error", 0);
+         System.out.println("Error: " + var7.toString());
+         var7.printStackTrace();
+      }
 
-    private void cetakLaporan() {
-        // Kode koneksi database (dari slide)
-        String user = "root";
-        String pass = "";
-        String host = "localhost";
-        String db   = "datamhs";
-        String url  = "";
+   }
 
-        // Mendapatkan direktori project
-        File dir1 = new File(".");
-        String dirr = "";
-
-        try {
-            // Ambil path direktori project
-            dirr = dir1.getCanonicalPath();
-
-            // Buat URL koneksi
-            url = "jdbc:mysql://" + host + "/" + db +
-                  "?user=" + user + "&password=" + pass;
-
-            // Buat koneksi ke database
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection koneksi = DriverManager.getConnection(url);
-
-            // Path ke file laporan (.jasper hasil compile dari .jrxml)
-            String reportPath = dirr + "/src/laporan/laporanMahasiswa.jasper";
-
-            // Parameter tambahan untuk laporan (opsional)
-            Map<String, Object> parameter = new HashMap<>();
-            parameter.put("judul", "Laporan Data Mahasiswa");
-
-            // Isi laporan dengan data dari database
-            JasperPrint jasperPrint = JasperFillManager.fillReport(
-                reportPath,
-                parameter,
-                koneksi
-            );
-
-            // Tampilkan laporan di JasperViewer
-            JasperViewer.viewReport(jasperPrint, false);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                "Gagal cetak laporan: " + e.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-            System.out.println("Error: " + e.toString());
-        }
-    }
-
-    public static void main(String[] args) {
-        new CetakLaporanForm().setVisible(true);
-    }
+   public static void main(String[] var0) {
+      (new CetakLaporanForm()).setVisible(true);
+   }
 }
