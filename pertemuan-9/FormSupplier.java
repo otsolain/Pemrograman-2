@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class FormCustomer extends JFrame {
+public class FormSupplier extends JFrame {
 
     JTextField txtKode = new JTextField();
     JTextField txtNama = new JTextField();
@@ -26,8 +26,8 @@ public class FormCustomer extends JFrame {
 
     Connection conn;
 
-    public FormCustomer() {
-        setTitle("Form Customer");
+    public FormSupplier() {
+        setTitle("Form Supplier");
         setSize(750, 500);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -35,9 +35,9 @@ public class FormCustomer extends JFrame {
         conn = Koneksi.getConnection();
 
         JPanel panelInput = new JPanel(new GridLayout(6, 2, 10, 10));
-        panelInput.add(new JLabel("Kode Customer"));
+        panelInput.add(new JLabel("Kode Supplier"));
         panelInput.add(txtKode);
-        panelInput.add(new JLabel("Nama Customer"));
+        panelInput.add(new JLabel("Nama Supplier"));
         panelInput.add(txtNama);
         panelInput.add(new JLabel("Alamat"));
         panelInput.add(txtAlamat);
@@ -49,8 +49,8 @@ public class FormCustomer extends JFrame {
         panelInput.add(btnBersih);
 
         model = new DefaultTableModel();
-        model.addColumn("Kode Customer");
-        model.addColumn("Nama Customer");
+        model.addColumn("Kode Supplier");
+        model.addColumn("Nama Supplier");
         model.addColumn("Alamat");
         model.addColumn("Telepon");
 
@@ -85,14 +85,14 @@ public class FormCustomer extends JFrame {
     private void tampilData() {
         model.setRowCount(0);
         try {
-            String sql = "SELECT * FROM customer";
+            String sql = "SELECT * FROM supplier";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 model.addRow(new Object[]{
-                    rs.getString("kd_customer"),
-                    rs.getString("nm_customer"),
+                    rs.getString("kd_supplier"),
+                    rs.getString("nm_supplier"),
                     rs.getString("alamat"),
                     rs.getString("telp")
                 });
@@ -104,7 +104,7 @@ public class FormCustomer extends JFrame {
 
     private void simpanData() {
         try {
-            String sql = "INSERT INTO customer (kd_customer, nm_customer, alamat, telp) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO supplier (kd_supplier, nm_supplier, alamat, telp) VALUES (?, ?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, txtKode.getText());
             ps.setString(2, txtNama.getText());
@@ -112,7 +112,7 @@ public class FormCustomer extends JFrame {
             ps.setString(4, txtTelp.getText());
             ps.executeUpdate();
 
-            JOptionPane.showMessageDialog(this, "Data customer berhasil disimpan");
+            JOptionPane.showMessageDialog(this, "Data supplier berhasil disimpan");
             bersihForm();
             tampilData();
         } catch (Exception e) {
@@ -122,7 +122,7 @@ public class FormCustomer extends JFrame {
 
     private void ubahData() {
         try {
-            String sql = "UPDATE customer SET nm_customer=?, alamat=?, telp=? WHERE kd_customer=?";
+            String sql = "UPDATE supplier SET nm_supplier=?, alamat=?, telp=? WHERE kd_supplier=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, txtNama.getText());
             ps.setString(2, txtAlamat.getText());
@@ -130,7 +130,7 @@ public class FormCustomer extends JFrame {
             ps.setString(4, txtKode.getText());
             ps.executeUpdate();
 
-            JOptionPane.showMessageDialog(this, "Data customer berhasil diubah");
+            JOptionPane.showMessageDialog(this, "Data supplier berhasil diubah");
             bersihForm();
             tampilData();
         } catch (Exception e) {
@@ -140,12 +140,12 @@ public class FormCustomer extends JFrame {
 
     private void hapusData() {
         try {
-            String sql = "DELETE FROM customer WHERE kd_customer=?";
+            String sql = "DELETE FROM supplier WHERE kd_supplier=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, txtKode.getText());
             ps.executeUpdate();
 
-            JOptionPane.showMessageDialog(this, "Data customer berhasil dihapus");
+            JOptionPane.showMessageDialog(this, "Data supplier berhasil dihapus");
             bersihForm();
             tampilData();
         } catch (Exception e) {
